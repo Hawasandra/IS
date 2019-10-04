@@ -22,6 +22,10 @@ input[type='submit']{
      margin-top: 10px;
      cursor:pointer;
      }
+    .error{
+        font-family: Comic Sans MS;
+        color:#B22222;
+    }
 </style>
 </head>
 <body>
@@ -57,14 +61,22 @@ and password='".md5($password)."'";
 <br>
 <br>
 <h1 style="font-family: calibri; color:#B5651D;">Login</h1>
-<form action="" method="post" name="login"><br>
-<input type="email" name="email" placeholder="Email" required /><br><br>
+<form action="check.php" method="post" name="login"><br>
 <input type="text" name="username" placeholder="Username" required /><br><br>
 <input type="password" name="password" placeholder="Password" required /><br><br>
 <input name="submit" type="submit" value="Login" />
+<?php
+                    if(isset($_SESSION["error"])){
+                        $error = $_SESSION["error"];
+                        echo "<span>$error</span>";
+                    }
+                ?>  
 </form>
 <p style="font-family: calibri; color:#B5651D;">Not registered yet? <a href='registration.php'style="color: black">Register Here</a></p>
 </div>
 <?php } ?>
 </body>
 </html>
+<?php
+    unset($_SESSION["error"]);
+?>
